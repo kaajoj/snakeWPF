@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SnakeWpfApp"
         mc:Ignorable="d"
-        Title="Snake" Height="474" Width="800" ResizeMode="CanMinimize">
+        Title="Snake" Height="474" Width="800" ResizeMode="CanMinimize" KeyDown="Window_KeyDown">
     <Grid Background="#FF3B6DC7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />

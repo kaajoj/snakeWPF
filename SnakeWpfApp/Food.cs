@@ -12,7 +12,7 @@ namespace SnakeWpfApp
 {
     public class Food
     {
-        private int pointSize;
+        private int foodSize;
         public int xFood;
         public int yFood;
         public Rectangle rectanglePoint;
@@ -20,7 +20,7 @@ namespace SnakeWpfApp
 
         public Food()
         {
-            pointSize = 20;
+            foodSize = 20;
             rectanglePoint = placeFood();
         }
 
@@ -32,8 +32,8 @@ namespace SnakeWpfApp
             // coordinate = new Coordinate(xPoint, yPoint);
 
             Rectangle food = new Rectangle();
-            food.Width = pointSize;
-            food.Height = pointSize;
+            food.Width = foodSize;
+            food.Height = foodSize;
             food.Fill = new SolidColorBrush(Color.FromRgb(228, 112, 58));
 
             return food;

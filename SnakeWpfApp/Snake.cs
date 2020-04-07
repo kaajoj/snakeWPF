@@ -26,7 +26,7 @@ namespace SnakeWpfApp
         {
             direction = Direction.Right;
             headSize = 20;
-            snakeLength = 3;
+            snakeLength = 4;
             xCordSnakeHead = 160;
             yCordSnakeHead = 180;
             elementCord = new Coordinate(xCordSnakeHead, yCordSnakeHead);
@@ -59,18 +59,46 @@ namespace SnakeWpfApp
         {
             snakeLength++;
         }
+
         public void move()
         {
+            SnakeElement tempElement = new SnakeElement();
             for (int i = 0; i < snakeLength; i++)
             {
-                snakeElements[i].xCordSnakeElement += 20;
-                // drawSnake();
+                if (i==0)
+                {
+                    tempElement.xCordSnakeElement = snakeElements[i].xCordSnakeElement;
+                    tempElement.yCordSnakeElement = snakeElements[i].yCordSnakeElement;
+
+                    switch (direction)
+                    {
+                        case Direction.Up:
+                            snakeElements[i].yCordSnakeElement -= 20;
+                            break;
+                        case Direction.Down:
+                            snakeElements[i].yCordSnakeElement += 20;
+                            break;
+                        case Direction.Left:
+                            snakeElements[i].xCordSnakeElement -= 20;
+                            break;
+                        case Direction.Right:
+                            snakeElements[i].xCordSnakeElement += 20;
+                            break;
+                    } 
+                } else 
+                {
+                    SnakeElement newSnakeElement = new SnakeElement();
+                    newSnakeElement.xCordSnakeElement = snakeElements[i].xCordSnakeElement;
+                    newSnakeElement.yCordSnakeElement = snakeElements[i].yCordSnakeElement;
+
+                    snakeElements[i].xCordSnakeElement = tempElement.xCordSnakeElement;
+                    snakeElements[i].yCordSnakeElement = tempElement.yCordSnakeElement;
+
+                    tempElement.xCordSnakeElement = newSnakeElement.xCordSnakeElement;
+                    tempElement.yCordSnakeElement = newSnakeElement.yCordSnakeElement;
+                }
             }
         }
 
-        public void turn()
-        {
-
-        }
     }
 }

@@ -48,6 +48,7 @@ namespace SnakeWpfApp
                 Canvas.SetLeft(snake.snakeElements[i].element, snake.snakeElements[i].xCordSnakeElement);
                 Canvas.SetTop(snake.snakeElements[i].element, snake.snakeElements[i].yCordSnakeElement);
             }
+
         }
 
         private void newGameButton_Click(object sender, RoutedEventArgs e)
@@ -99,6 +100,36 @@ namespace SnakeWpfApp
             }
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Up:
+                    if (snake.direction != Snake.Direction.Down)
+                    {
+                        snake.direction = Snake.Direction.Up;
+                    }
+                    break;
+                case Key.Down:
+                    if (snake.direction != Snake.Direction.Up)
+                    {
+                        snake.direction = Snake.Direction.Down;
+                    }
+                    break;
+                case Key.Left:
+                    if (snake.direction != Snake.Direction.Right)
+                    {
+                        snake.direction = Snake.Direction.Left;
+                    }
+                    break;
+                case Key.Right:
+                    if (snake.direction != Snake.Direction.Left)
+                    {
+                        snake.direction = Snake.Direction.Right;
+                    }
+                    break;
+            }
+        }
 
     }
 }
