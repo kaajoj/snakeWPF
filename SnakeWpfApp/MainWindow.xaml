@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SnakeWpfApp"
         mc:Ignorable="d"
-        Title="Snake" Height="475" Width="800">
-    <Grid Background="#FF5BA1E6">
+        Title="Snake" Height="474" Width="800" ResizeMode="CanMinimize">
+    <Grid Background="#FF3B6DC7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="auto" />
@@ -30,16 +30,15 @@
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="2" Grid.Row="1" FontSize="20" Content="START GAME" />
-        <Button Grid.Column="4" Grid.Row="1" FontSize="20" Content="NEW GAME" />
+        <Button x:Name="startButton" Grid.Column="2" Grid.Row="1" FontSize="20" Content="START GAME" Click="startButton_Click" />
+        <Button x:Name="newGameButton" Grid.Column="4" Grid.Row="1" FontSize="20" Content="NEW GAME" Click="newGameButton_Click" IsEnabled="False" />
 
-        <Canvas Grid.Column="1" Grid.Row="2" Height="380" Width="560" Margin="5" Background="Black" Grid.ColumnSpan="6">
-            <Rectangle Width="20" Height="20" Canvas.Top="20" Canvas.Left="20" Fill="#FFE4703A" />
+        <Canvas x:Name="gameBoard" Grid.Column="1" Grid.Row="2" Height="380" Width="560" Margin="5" Background="Black" Grid.ColumnSpan="6">
         </Canvas>
 
         <Label Grid.Column="7" Grid.Row="2" FontSize="20" Margin="20,20,0,0" FontWeight="Bold">Score:</Label>
-        <Label Grid.Column="8" Grid.Row="2" FontSize="20" Margin="0,20,0,0" FontWeight="Bold">0</Label>
+        <Label x:Name="scoreLabel" Grid.Column="8" Grid.Row="2" FontSize="20" Margin="0,20,0,0" FontWeight="Bold">0</Label>
 
-        <Image Grid.Column="7" Grid.Row="2" Width="140" Height="100" Grid.ColumnSpan="2" OpacityMask="#FFAA2C2C"/>
+        <Image x:Name="imageField" Grid.Column="7" Grid.Row="2" Width="180" Height="120" Grid.ColumnSpan="2" Source="D:\Repos\DESKTOP\snake-3979601__340.webp"/>
     </Grid>
 </Window>
