@@ -11,11 +11,14 @@ namespace SnakeWpfApp
     {
         public int snakeLength;
         public readonly int headSize;
-        public int xSnakeHead;
-        public int ySnakeHead;
-        public Rectangle head;
+        public int xCordSnakeHead;
+        public int yCordSnakeHead;
+        // public int xElementCord;
+        // public int yElementCord;
+        public Coordinate elementCord { get; set; }
+        // public Rectangle head;
         public Direction direction;
-        public List<Rectangle> snakeElements = new List<Rectangle>();
+        public List<SnakeElement> snakeElements = new List<SnakeElement>();
 
         public enum Direction { Left, Right, Up, Down }
 
@@ -24,31 +27,31 @@ namespace SnakeWpfApp
             direction = Direction.Right;
             headSize = 20;
             snakeLength = 3;
-            xSnakeHead = 260;
-            ySnakeHead = 180;
-            head = placeHead();
+            xCordSnakeHead = 160;
+            yCordSnakeHead = 180;
+            elementCord = new Coordinate(xCordSnakeHead, yCordSnakeHead);
+ 
             drawSnake();
-        }
-
-        public Rectangle placeHead()
-        {
-            Rectangle rect = new Rectangle();
-            rect.Width = headSize;
-            rect.Height = headSize;
-            rect.Fill = new SolidColorBrush(Color.FromRgb(228, 112, 58));
-            snakeElements.Add(rect);
-            return rect;
         }
 
         public void drawSnake()
         {
-            for (int i = 1; i < snakeLength; i++)
+            for (int i = 0; i < snakeLength; i++)
             {
                 Rectangle element = new Rectangle();
                 element.Width = headSize;
                 element.Height = headSize;
-                element.Fill = new SolidColorBrush(Color.FromRgb(58, 228, 81));
-                snakeElements.Add(element);
+                if (i == 0)
+                {
+                    element.Fill = new SolidColorBrush(Color.FromRgb(240, 25, 25));
+                }
+                else
+                {
+                    element.Fill = new SolidColorBrush(Color.FromRgb(58, 228, 81));
+                }
+
+                SnakeElement snakeElement = new SnakeElement(xCordSnakeHead - (i * headSize), yCordSnakeHead, element);
+                snakeElements.Add(snakeElement);
             }
         }
 
@@ -58,7 +61,11 @@ namespace SnakeWpfApp
         }
         public void move()
         {
-
+            for (int i = 0; i < snakeLength; i++)
+            {
+                snakeElements[i].xCordSnakeElement += 20;
+                // drawSnake();
+            }
         }
 
         public void turn()

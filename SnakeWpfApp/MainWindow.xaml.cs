@@ -20,7 +20,8 @@ namespace SnakeWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Snake snake;
+        public Snake snake;
+        public Food food;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,27 +32,73 @@ namespace SnakeWpfApp
             startGame();
             startButton.IsEnabled = false;
             newGameButton.IsEnabled = true;
+
+            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);
+            dispatcherTimer.Start();
         }
 
-        private void startGame()
+        private void dispatcherTimer_Tick(object? sender, EventArgs e)
         {
-            snake = new Snake();
-            Canvas.SetLeft(snake.head, snake.xSnakeHead);
-            Canvas.SetTop(snake.head, snake.ySnakeHead);
-            gameBoard.Children.Add(snake.head);
-            for (int i = 1; i < snake.snakeLength; i++)
+            // MessageBox.Show("test");
+            snake.move();
+            for (int i = 0; i < snake.snakeLength; i++)
             {
-                Canvas.SetLeft(snake.snakeElements[i], snake.xSnakeHead - (i * snake.headSize));
-                Canvas.SetTop(snake.snakeElements[i], snake.ySnakeHead);
-                gameBoard.Children.Add(snake.snakeElements[i]);
+                Canvas.SetLeft(snake.snakeElements[i].element, snake.snakeElements[i].xCordSnakeElement);
+                Canvas.SetTop(snake.snakeElements[i].element, snake.snakeElements[i].yCordSnakeElement);
             }
         }
 
         private void newGameButton_Click(object sender, RoutedEventArgs e)
         {
-            gameBoard.Children.RemoveRange(0,snake.snakeLength);
+            // gameBoard.Children.RemoveRange(0, snake.snakeLength);
+            gameBoard.Children.Clear();
             startButton.IsEnabled = true;
             newGameButton.IsEnabled = false;
         }
+
+        private void startGame()
+        {
+            snake = new Snake();
+
+            for (int i = 0; i < snake.snakeLength; i++)
+            {
+                Canvas.SetLeft(snake.snakeElements[i].element, snake.snakeElements[i].xCordSnakeElement);
+                Canvas.SetTop(snake.snakeElements[i].element, snake.snakeElements[i].yCordSnakeElement);
+                gameBoard.Children.Add(snake.snakeElements[i].element);
+            }
+            showFood();
+        }
+
+        private void showFood()
+        {
+            food = new Food();
+            bool collision = true;
+
+            while (collision)
+            {
+                for (int i = 0; i < snake.snakeLength; i++)
+                {
+                    if (food.xFood.ToString() == snake.snakeElements[i].xCordSnakeElement.ToString() && food.yFood.ToString() == snake.snakeElements[i].yCordSnakeElement.ToString())
+                    {
+                        food = new Food();
+                    }
+                    else
+                    {
+                        collision = false;
+                    }
+                }
+            }
+
+            if (!collision)
+            {
+                Canvas.SetLeft(food.rectanglePoint, food.xFood);
+                Canvas.SetTop(food.rectanglePoint, food.yFood);
+                gameBoard.Children.Add(food.rectanglePoint);
+            }
+        }
+
+
     }
 }
