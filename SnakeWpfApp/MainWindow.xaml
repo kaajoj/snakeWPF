@@ -39,11 +39,11 @@
             <Label x:Name="gameOverScore" Foreground="White" FontSize="28" Content="0" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="320" Canvas.Top="170" Visibility="Hidden" Panel.ZIndex="1" />
         </Canvas>
 
-        
 
-        <Label Grid.Column="7" Grid.Row="2" FontSize="26" Margin="20,20,0,0" FontWeight="Bold">Score:</Label>
-        <Label x:Name="scoreLabel" Grid.Column="8" Grid.Row="2" FontSize="26" Margin="0,20,0,0" FontWeight="Bold">0</Label>
-        <Border Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2" Width="180" Height="120" Background="Black">
+        <Label Grid.Column="7" Grid.Row="2" FontSize="40" Margin="25,0,0,0" FontWeight="Bold" Grid.ColumnSpan="2">SNAKE</Label>
+        <Label Grid.Column="7" Grid.Row="2" FontSize="26" Margin="40,65,0,0" FontWeight="Bold">Score:</Label>
+        <Label x:Name="scoreLabel" Grid.Column="8" Grid.Row="2" FontSize="26" Margin="0,65,0,0" FontWeight="Bold">0</Label>
+        <Border Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2" Width="180" Height="120" Background="Black" Margin="0,0,0,10">
             <Image x:Name="imageField" />
         </Border>
     </Grid>

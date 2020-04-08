@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace SnakeWpfApp
@@ -26,7 +15,11 @@ namespace SnakeWpfApp
         public Food food;
         public SnakeImage snakeImage;
         public int score;
+        public bool directionChanged = false;
+        public int timeInterval;
         DispatcherTimer dispatcherTimer; 
+       
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,10 +30,11 @@ namespace SnakeWpfApp
             startGame();
             startButton.IsEnabled = false;
             newGameButton.IsEnabled = true;
+            timeInterval = 200;
 
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,200);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(timeInterval);
             dispatcherTimer.Start();
         }
 
@@ -74,9 +68,6 @@ namespace SnakeWpfApp
             if (snake.snakeElements[0].xCordSnakeElement == food.xFood
                 && snake.snakeElements[0].yCordSnakeElement == food.yFood)
             {
-                snakeImage = new SnakeImage();
-                imageField.Source = snakeImage.randomImage();
-
                 SnakeElement newSnakeElement = snake.eat();
                 score++;
                 scoreLabel.Content = score;
@@ -87,7 +78,18 @@ namespace SnakeWpfApp
 
                 gameBoard.Children.Remove(food.rectanglePoint);
                 showFood();
+
+                snakeImage = new SnakeImage();
+                imageField.Source = snakeImage.randomImage();
+
+                if (timeInterval > 50)
+                {
+                    timeInterval -= 15;
+                }
+                dispatcherTimer.Interval = TimeSpan.FromMilliseconds(timeInterval);
             }
+
+            directionChanged = false;
         }
 
         private void gameOver()
@@ -163,32 +165,43 @@ namespace SnakeWpfApp
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.Key)
+            if (!directionChanged)
             {
-                case Key.Up:
-                    if (snake.direction != Snake.Direction.Down)
-                    {
-                        snake.direction = Snake.Direction.Up;
-                    }
-                    break;
-                case Key.Down:
-                    if (snake.direction != Snake.Direction.Up)
-                    {
-                        snake.direction = Snake.Direction.Down;
-                    }
-                    break;
-                case Key.Left:
-                    if (snake.direction != Snake.Direction.Right)
-                    {
-                        snake.direction = Snake.Direction.Left;
-                    }
-                    break;
-                case Key.Right:
-                    if (snake.direction != Snake.Direction.Left)
-                    {
-                        snake.direction = Snake.Direction.Right;
-                    }
-                    break;
+                switch (e.Key)
+                {
+                    case Key.Up:
+                        if (snake.direction != Snake.Direction.Down)
+                        {
+                            snake.direction = Snake.Direction.Up;
+                            directionChanged = true;
+                        }
+
+                        break;
+                    case Key.Down:
+                        if (snake.direction != Snake.Direction.Up)
+                        {
+                            snake.direction = Snake.Direction.Down;
+                            directionChanged = true;
+                        }
+
+                        break;
+                    case Key.Left:
+                        if (snake.direction != Snake.Direction.Right)
+                        {
+                            snake.direction = Snake.Direction.Left;
+                            directionChanged = true;
+                        }
+
+                        break;
+                    case Key.Right:
+                        if (snake.direction != Snake.Direction.Left)
+                        {
+                            snake.direction = Snake.Direction.Right;
+                            directionChanged = true;
+                        }
+
+                        break;
+                }
             }
         }
 

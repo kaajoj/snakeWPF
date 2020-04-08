@@ -8,9 +8,9 @@ namespace SnakeWpfApp
     public class Food
     {
         private readonly int _foodSize;
+        public Rectangle rectanglePoint;
         public int xFood;
         public int yFood;
-        public Rectangle rectanglePoint;
 
         public Food()
         {
@@ -28,7 +28,6 @@ namespace SnakeWpfApp
             food.Width = _foodSize;
             food.Height = _foodSize;
             food.Fill = new SolidColorBrush(Color.FromRgb(228, 112, 58));
-
             return food;
         }
     }
