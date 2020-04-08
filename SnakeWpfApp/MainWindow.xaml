@@ -43,7 +43,7 @@
 
         <Label Grid.Column="7" Grid.Row="2" FontSize="26" Margin="20,20,0,0" FontWeight="Bold">Score:</Label>
         <Label x:Name="scoreLabel" Grid.Column="8" Grid.Row="2" FontSize="26" Margin="0,20,0,0" FontWeight="Bold">0</Label>
-        <Border Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2" Width="170" Height="120" Background="Black">
+        <Border Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2" Width="180" Height="120" Background="Black">
             <Image x:Name="imageField" />
         </Border>
     </Grid>

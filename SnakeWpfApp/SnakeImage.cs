@@ -40,33 +40,13 @@ namespace SnakeWpfApp
 
         public BitmapImage downloadImage(string url)
         {
-            Uri urlUri = new Uri(url);
-            var request = WebRequest.CreateDefault(urlUri);
-            var response = request.GetResponse();
-            var stream = response.GetResponseStream();
-            if (stream != null && stream.CanRead)
-            {
-                byte[] buffer = new byte[response.ContentLength];
-                stream.Read(buffer, 0, buffer.Length);
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.UriSource = new Uri(url);
+            bitmap.EndInit();
 
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                bitmap.StreamSource = new MemoryStream(buffer);
-                bitmap.EndInit();
-
-                stream.Close();
-
-                return bitmap;
-            } else return null;
-
-            // using (var stream = new MemoryStream())
-            // {
-            //     bitmap.StreamSource = stream;
-            //     bitmap.CacheOption = BitmapCacheOption.OnLoad;
-            //     bitmap.EndInit();
-            //     bitmap.Freeze();
-            // }
+            return bitmap;
         }
 
     }
