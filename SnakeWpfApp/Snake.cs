@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -13,10 +14,6 @@ namespace SnakeWpfApp
         public readonly int headSize;
         public int xCordSnakeHead;
         public int yCordSnakeHead;
-        // public int xElementCord;
-        // public int yElementCord;
-        public Coordinate elementCord { get; set; }
-        // public Rectangle head;
         public Direction direction;
         public List<SnakeElement> snakeElements = new List<SnakeElement>();
 
@@ -26,11 +23,9 @@ namespace SnakeWpfApp
         {
             direction = Direction.Right;
             headSize = 20;
-            snakeLength = 4;
+            snakeLength = 5;
             xCordSnakeHead = 160;
             yCordSnakeHead = 180;
-            elementCord = new Coordinate(xCordSnakeHead, yCordSnakeHead);
- 
             drawSnake();
         }
 
@@ -58,6 +53,8 @@ namespace SnakeWpfApp
         public void eat()
         {
             snakeLength++;
+            SnakeElement snakeElement = new SnakeElement();
+            snakeElements.Add(snakeElement);
         }
 
         public void move()

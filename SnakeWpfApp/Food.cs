@@ -16,7 +16,6 @@ namespace SnakeWpfApp
         public int xFood;
         public int yFood;
         public Rectangle rectanglePoint;
-        public Coordinate coordinate { get; set; }
 
         public Food()
         {

@@ -14,8 +14,8 @@ namespace SnakeWpfApp
 
         public SnakeElement()
         {
-            xCordSnakeElement = 0;
-            yCordSnakeElement = 0;
+            xCordSnakeElement = 20;
+            yCordSnakeElement = 20;
             element = new Rectangle(); 
             element.Width = 20;
             element.Height = 20;
@@ -26,7 +26,6 @@ namespace SnakeWpfApp
             xCordSnakeElement = x;
             yCordSnakeElement = y;
             element = rect;
-            // elementCord = new Coordinate(xCordSnakeHead, yCordSnakeHead);
         }
     }
 }

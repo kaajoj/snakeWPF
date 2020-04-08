@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SnakeWpfApp"
         mc:Ignorable="d"
-        Title="Snake" Height="474" Width="800" ResizeMode="CanMinimize" KeyDown="Window_KeyDown">
+        Title="Snake" Height="475" Width="800" ResizeMode="CanMinimize" KeyDown="Window_KeyDown">
     <Grid Background="#FF3B6DC7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
@@ -34,11 +34,16 @@
         <Button x:Name="newGameButton" Grid.Column="4" Grid.Row="1" FontSize="20" Content="NEW GAME" Click="newGameButton_Click" IsEnabled="False" />
 
         <Canvas x:Name="gameBoard" Grid.Column="1" Grid.Row="2" Height="380" Width="560" Margin="5" Background="Black" Grid.ColumnSpan="6">
+            <Label x:Name="gameOverLabel" Foreground="White" FontSize="36" Content="GAVE OVER" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="200" Canvas.Top="130" Visibility="Hidden" />
+            <Label x:Name="gameOverScoreLabel" Foreground="White" FontSize="28" Content="Score:" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="240" Canvas.Top="170" Visibility="Hidden" />
+            <Label x:Name="gameOverScore" Foreground="White" FontSize="28" Content="0" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="320" Canvas.Top="170" Visibility="Hidden" />
         </Canvas>
 
-        <Label Grid.Column="7" Grid.Row="2" FontSize="20" Margin="20,20,0,0" FontWeight="Bold">Score:</Label>
-        <Label x:Name="scoreLabel" Grid.Column="8" Grid.Row="2" FontSize="20" Margin="0,20,0,0" FontWeight="Bold">0</Label>
+        
 
-        <Image x:Name="imageField" Grid.Column="7" Grid.Row="2" Width="180" Height="120" Grid.ColumnSpan="2" Source="D:\Repos\DESKTOP\snake-3979601__340.webp"/>
+        <Label Grid.Column="7" Grid.Row="2" FontSize="26" Margin="20,20,0,0" FontWeight="Bold">Score:</Label>
+        <Label x:Name="scoreLabel" Grid.Column="8" Grid.Row="2" FontSize="26" Margin="0,20,0,0" FontWeight="Bold">0</Label>
+
+        <Image x:Name="imageField" Grid.Column="7" Grid.Row="2" Width="170" Height="110" Grid.ColumnSpan="2" Source="D:\Repos\DESKTOP\snake-3979601__340.webp" />
     </Grid>
 </Window>
