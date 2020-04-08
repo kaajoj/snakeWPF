@@ -50,11 +50,15 @@ namespace SnakeWpfApp
             }
         }
 
-        public void eat()
+        public SnakeElement eat()
         {
             snakeLength++;
+            Rectangle element = new Rectangle();
+            element.Width = headSize;
+            element.Height = headSize;
             SnakeElement snakeElement = new SnakeElement();
             snakeElements.Add(snakeElement);
+            return snakeElement;
         }
 
         public void move()

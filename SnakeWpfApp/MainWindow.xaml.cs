@@ -40,11 +40,11 @@ namespace SnakeWpfApp
 
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,400);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,200);
             dispatcherTimer.Start();
         }
 
-        private void dispatcherTimer_Tick(object? sender, EventArgs e)
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             snake.move();
             for (int i = 0; i < snake.snakeLength; i++)
@@ -61,14 +61,29 @@ namespace SnakeWpfApp
                 gameOver();
             }
 
+
+            for (int i = 1; i < snake.snakeLength; i++)
+            {
+                if (snake.snakeElements[0].xCordSnakeElement == snake.snakeElements[i].xCordSnakeElement &&
+                    snake.snakeElements[0].yCordSnakeElement == snake.snakeElements[i].yCordSnakeElement)
+                {
+                    gameOver();
+                }
+            }
+
             if (snake.snakeElements[0].xCordSnakeElement == food.xFood
                 && snake.snakeElements[0].yCordSnakeElement == food.yFood)
             {
                 // imageField.Source;
                 // snakeImage.randomImage();
-                snake.eat();
+                SnakeElement newSnakeElement = snake.eat();
                 score++;
                 scoreLabel.Content = score;
+
+                Canvas.SetLeft(newSnakeElement.element, newSnakeElement.xCordSnakeElement);
+                Canvas.SetTop(newSnakeElement.element, newSnakeElement.yCordSnakeElement);
+                gameBoard.Children.Add(newSnakeElement.element);
+
                 gameBoard.Children.Remove(food.rectanglePoint);
                 showFood();
             }
@@ -79,6 +94,7 @@ namespace SnakeWpfApp
             dispatcherTimer.Stop();
             gameBoard.Children.Remove(food.rectanglePoint);
             gameOverLabel.Visibility = Visibility.Visible;
+            gameOverLabel.Visibility = Visibility.Visible;
             gameOverScoreLabel.Visibility = Visibility.Visible;
             gameOverScore.Content = score;
             gameOverScore.Visibility = Visibility.Visible;
@@ -86,7 +102,15 @@ namespace SnakeWpfApp
 
         private void newGameButton_Click(object sender, RoutedEventArgs e)
         {
-            gameBoard.Children.Clear();
+            for (int i = 0; i < snake.snakeLength; i++)
+            {
+                gameBoard.Children.Remove(snake.snakeElements[i].element);
+            }
+            gameBoard.Children.Remove(food.rectanglePoint);
+            gameOverLabel.Visibility = Visibility.Hidden;
+            gameOverScoreLabel.Visibility = Visibility.Hidden;
+            gameOverScore.Visibility = Visibility.Hidden;
+
             startButton.IsEnabled = true;
             newGameButton.IsEnabled = false;
             score = 0;
@@ -116,7 +140,8 @@ namespace SnakeWpfApp
             {
                 for (int i = 0; i < snake.snakeLength; i++)
                 {
-                    if (food.xFood.ToString() == snake.snakeElements[i].xCordSnakeElement.ToString() && food.yFood.ToString() == snake.snakeElements[i].yCordSnakeElement.ToString())
+                    if (food.xFood.ToString() == snake.snakeElements[i].xCordSnakeElement.ToString() 
+                        && food.yFood.ToString() == snake.snakeElements[i].yCordSnakeElement.ToString())
                     {
                         food = new Food();
                     }

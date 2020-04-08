@@ -34,9 +34,9 @@
         <Button x:Name="newGameButton" Grid.Column="4" Grid.Row="1" FontSize="20" Content="NEW GAME" Click="newGameButton_Click" IsEnabled="False" />
 
         <Canvas x:Name="gameBoard" Grid.Column="1" Grid.Row="2" Height="380" Width="560" Margin="5" Background="Black" Grid.ColumnSpan="6">
-            <Label x:Name="gameOverLabel" Foreground="White" FontSize="36" Content="GAVE OVER" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="200" Canvas.Top="130" Visibility="Hidden" />
-            <Label x:Name="gameOverScoreLabel" Foreground="White" FontSize="28" Content="Score:" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="240" Canvas.Top="170" Visibility="Hidden" />
-            <Label x:Name="gameOverScore" Foreground="White" FontSize="28" Content="0" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="320" Canvas.Top="170" Visibility="Hidden" />
+            <Label x:Name="gameOverLabel" Foreground="White" FontSize="36" Content="GAVE OVER" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="200" Canvas.Top="130" Visibility="Hidden" Panel.ZIndex="1" />
+            <Label x:Name="gameOverScoreLabel" Foreground="White" FontSize="28" Content="Score:" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="240" Canvas.Top="170" Visibility="Hidden" Panel.ZIndex="1" />
+            <Label x:Name="gameOverScore" Foreground="White" FontSize="28" Content="0" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="320" Canvas.Top="170" Visibility="Hidden" Panel.ZIndex="1" />
         </Canvas>
 
         
