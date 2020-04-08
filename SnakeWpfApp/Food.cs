@@ -23,7 +23,6 @@ namespace SnakeWpfApp
             Random rand = new Random();
             xFood = rand.Next(28)*20;
             yFood = rand.Next(19)*20;
-            // coordinate = new Coordinate(xPoint, yPoint);
 
             Rectangle food = new Rectangle();
             food.Width = _foodSize;

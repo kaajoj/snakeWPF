@@ -74,8 +74,9 @@ namespace SnakeWpfApp
             if (snake.snakeElements[0].xCordSnakeElement == food.xFood
                 && snake.snakeElements[0].yCordSnakeElement == food.yFood)
             {
-                // imageField.Source;
-                // snakeImage.randomImage();
+                snakeImage = new SnakeImage();
+                imageField.Source = snakeImage.randomImage();
+
                 SnakeElement newSnakeElement = snake.eat();
                 score++;
                 scoreLabel.Content = score;
