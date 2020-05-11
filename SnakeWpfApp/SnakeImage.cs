@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Threading.Tasks;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace SnakeWpfApp
@@ -15,7 +13,7 @@ namespace SnakeWpfApp
         private string url3 = "https://cdn.pixabay.com/photo/2014/10/25/00/17/snake-501986_960_720.jpg";
         private string url4 = "https://cdn.pixabay.com/photo/2015/10/30/15/04/green-tree-python-1014229_960_720.jpg";
         private string url5 = "https://cdn.pixabay.com/photo/2016/11/29/02/53/animal-1866944_960_720.jpg";
-        
+
         public BitmapImage randomImage()
         {
             Hashtable hashtable = new Hashtable

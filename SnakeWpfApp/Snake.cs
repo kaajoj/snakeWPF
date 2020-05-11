@@ -62,7 +62,7 @@ namespace SnakeWpfApp
             SnakeElement tempElement = new SnakeElement();
             for (int i = 0; i < snakeLength; i++)
             {
-                if (i==0)
+                if (i == 0)
                 {
                     tempElement.xCordSnakeElement = snakeElements[i].xCordSnakeElement;
                     tempElement.yCordSnakeElement = snakeElements[i].yCordSnakeElement;
@@ -81,8 +81,9 @@ namespace SnakeWpfApp
                         case Direction.Right:
                             snakeElements[i].xCordSnakeElement += 20;
                             break;
-                    } 
-                } else 
+                    }
+                }
+                else
                 {
                     SnakeElement newSnakeElement = new SnakeElement();
                     newSnakeElement.xCordSnakeElement = snakeElements[i].xCordSnakeElement;

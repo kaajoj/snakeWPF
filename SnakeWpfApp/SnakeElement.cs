@@ -13,7 +13,7 @@ namespace SnakeWpfApp
         {
             xCordSnakeElement = -40;
             yCordSnakeElement = -40;
-            element = new Rectangle(); 
+            element = new Rectangle();
             element.Width = 20;
             element.Height = 20;
             element.Fill = new SolidColorBrush(Color.FromRgb(58, 228, 81));

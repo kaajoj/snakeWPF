@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,8 +18,8 @@ namespace SnakeWpfApp
         public int score;
         public bool directionChanged = false;
         public int timeInterval;
-        DispatcherTimer dispatcherTimer; 
-       
+        DispatcherTimer dispatcherTimer;
+
 
         public MainWindow()
         {
@@ -77,10 +78,9 @@ namespace SnakeWpfApp
                 gameBoard.Children.Add(newSnakeElement.element);
 
                 gameBoard.Children.Remove(food.rectanglePoint);
-                showFood();
 
-                snakeImage = new SnakeImage();
-                imageField.Source = snakeImage.randomImage();
+                showFood();
+                showImage();
 
                 if (timeInterval > 50)
                 {
@@ -90,6 +90,14 @@ namespace SnakeWpfApp
             }
 
             directionChanged = false;
+        }
+
+        private async void showImage()
+        {
+            await Task.Run(() =>
+            {
+                imageField.Dispatcher.BeginInvoke(() => { imageField.Source = snakeImage.randomImage(); });
+            });
         }
 
         private void gameOver()
@@ -124,6 +132,7 @@ namespace SnakeWpfApp
         private void startGame()
         {
             snake = new Snake();
+            snakeImage = new SnakeImage();
 
             for (int i = 0; i < snake.snakeLength; i++)
             {
@@ -143,7 +152,7 @@ namespace SnakeWpfApp
             {
                 for (int i = 0; i < snake.snakeLength; i++)
                 {
-                    if (food.xFood.ToString() == snake.snakeElements[i].xCordSnakeElement.ToString() 
+                    if (food.xFood.ToString() == snake.snakeElements[i].xCordSnakeElement.ToString()
                         && food.yFood.ToString() == snake.snakeElements[i].yCordSnakeElement.ToString())
                     {
                         food = new Food();
@@ -175,7 +184,6 @@ namespace SnakeWpfApp
                             snake.direction = Snake.Direction.Up;
                             directionChanged = true;
                         }
-
                         break;
                     case Key.Down:
                         if (snake.direction != Snake.Direction.Up)
@@ -183,7 +191,6 @@ namespace SnakeWpfApp
                             snake.direction = Snake.Direction.Down;
                             directionChanged = true;
                         }
-
                         break;
                     case Key.Left:
                         if (snake.direction != Snake.Direction.Right)
@@ -191,7 +198,6 @@ namespace SnakeWpfApp
                             snake.direction = Snake.Direction.Left;
                             directionChanged = true;
                         }
-
                         break;
                     case Key.Right:
                         if (snake.direction != Snake.Direction.Left)
@@ -199,7 +205,6 @@ namespace SnakeWpfApp
                             snake.direction = Snake.Direction.Right;
                             directionChanged = true;
                         }
-
                         break;
                 }
             }
